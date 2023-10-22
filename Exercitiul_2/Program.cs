@@ -45,7 +45,7 @@ namespace Exercitiul_2
             }
             int deltaX = mouse.X - lastMouseState.X;
             int deltaY = mouse.Y - lastMouseState.Y;
-            position.X -= deltaX * 0.01f;
+            position.X += deltaX * 0.01f;
             position.Y += deltaY * 0.01f;
             lastMouseState = mouse;
             Vector3 move = new Vector3(1,0,0);
@@ -66,12 +66,12 @@ namespace Exercitiul_2
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            Matrix4 lookat = Matrix4.LookAt(15, 50, 0, 0, 0, 0, 0, 0, 1);
+            Matrix4 lookat = Matrix4.LookAt(15, 50, 0, 0, 0, 0, 0, 0, -1);
             GL.MatrixMode(MatrixMode.Modelview);
             GL.LoadMatrix(ref lookat);
 
-            Matrix4 model = Matrix4.CreateTranslation(position); // Creează o matrice de translație
-            GL.MultMatrix(ref model); // Înmulțește matricea modelului cu matricea de translație
+            Matrix4 model = Matrix4.CreateTranslation(position); 
+            GL.MultMatrix(ref model); 
 
             DrawCube();
             SwapBuffers();
